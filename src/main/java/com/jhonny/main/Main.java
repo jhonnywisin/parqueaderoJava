@@ -13,6 +13,5 @@ public class Main {
         ModeloDato modelo = new ModeloDato();
         ControladorInicial control = new ControladorInicial(vi, modelo);
         vi.setVisible(true);
-        System.out.println("archivo " + modelo.leerDeArchivo());
     }
 }

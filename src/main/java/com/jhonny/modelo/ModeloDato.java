@@ -2,6 +2,7 @@ package com.jhonny.modelo;
 
 import java.io.*;
 import java.util.*;
+import javax.swing.DefaultListModel;
 
 public class ModeloDato {
     
@@ -24,10 +25,14 @@ public class ModeloDato {
     
     public String buscarDatos(List<String> lista,String texto){
 
-        if(lista.contains(texto)){                
-            System.out.println("el if de buscardatos " + texto);    
-            return texto;
-        }
-        return "";
+        if(lista.contains(texto))return texto;
+ 
+        return null;
+    }
+    
+    public void borrarDatos(DefaultListModel modelo, String texto){
+        
+        modelo.removeElement(texto);
+        
     }
 }

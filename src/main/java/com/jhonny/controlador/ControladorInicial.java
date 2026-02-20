@@ -4,6 +4,7 @@ import com.jhonny.modelo.ModeloDato;
 import com.jhonny.vista.VentanaInicial;
 import java.awt.Color;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class ControladorInicial {
     private VentanaInicial vista;
@@ -33,15 +34,25 @@ public class ControladorInicial {
        if(!texto.isEmpty()){
   
           if(texto.equalsIgnoreCase(obtenidoComparar)){
-              System.out.println("el dato ya exite: ");
               vista.txtEntrada.setForeground(Color.red);
               vista.txtEntrada.setText(obtenidoComparar);
+              vista.texPlaca.setText("");
+              String mensaje = "Vehiculo existente, desea borrarlo?";
+              int opcion = JOptionPane.showConfirmDialog(vista, mensaje, "Cobros", 0, 2);
+              
+              if(opcion == 0){
+               modelo.borrarDatos(vista.modeloLista, texto);
+               modelo.guardarEnArchivo(Collections.list(vista.modeloLista.elements()));
+               System.out.println("borrado");
+              }
+              
           }else{
               System.out.println("guardando archivos");
               vista.modeloLista.addElement(texto);
               modelo.guardarEnArchivo(Collections.list(vista.modeloLista.elements()));
               vista.txtEntrada.setText("exito");
               vista.txtEntrada.setForeground(Color.BLUE);
+              vista.texPlaca.setText("");
           }           
        }else return;
     }
